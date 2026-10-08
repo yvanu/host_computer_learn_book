@@ -1,0 +1,13 @@
+node_modules/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+.wrangler/
+.env
+.env.*
+!.env.example
+.vs/
+.vscode/
+**/bin/
+**/obj/
+__pycache__/
+*.pyc
