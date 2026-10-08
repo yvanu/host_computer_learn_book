@@ -41,7 +41,8 @@ export default {
         text: '01 · C# 与异步',
         items: [
           { text: '01-1 C# 必备语法', link: '/01-csharp/' },
-          { text: '01-2 async / await', link: '/01-csharp/async' }
+          { text: '01-2 async / await', link: '/01-csharp/async' },
+          { text: '01-3 属性、接口与事件', link: '/01-csharp/oop-practice' }
         ]
       },
       {
@@ -63,7 +64,11 @@ export default {
         text: '04 · 工业通信',
         items: [
           { text: '04-1 Modbus 基础', link: '/04-modbus/' },
-          { text: '04-2 寄存器、功能码与地址', link: '/04-modbus/registers' }
+          { text: '04-2 寄存器、功能码与地址', link: '/04-modbus/registers' },
+          { text: '04-3 Modbus TCP 实验', link: '/04-modbus/tcp-lab' },
+          { text: '04-4 RTU CRC16 实验', link: '/04-modbus/crc-lab' },
+          { text: '04-5 联调排障手册', link: '/04-modbus/debugging' },
+          { text: '04-6 Modbus 自测 12 题', link: '/04-modbus/quiz' }
         ]
       },
       {

@@ -24,6 +24,25 @@ Windows 上还可以运行 WPF 监控台：
 dotnet run --project examples/04-wpf-monitor
 ```
 
-模拟器只监听 `127.0.0.1:9000`。同时只能启动一个服务器实例，否则端口被占用。代码仅用于模拟学习，不应用于连接未经验证的工业设备。
+前四项实验使用文本协议模拟器 `127.0.0.1:9000`。
+
+## 进入 Modbus 工业通信实战
+
+```powershell
+# 开一个终端：启动本机模拟 PLC（无需 pip）
+python examples/05-modbus-tcp-simulator/simulator.py
+
+# 另一个终端：任选 Python 或 C# 客户端
+python examples/05-modbus-tcp-simulator/inspect_client.py
+dotnet run --project examples/06-modbus-tcp-client
+
+# 只有本机模拟器才允许用下面的写入练习
+dotnet run --project examples/06-modbus-tcp-client -- write-rpm 1500
+
+# 单独学习 RTU CRC，无需串口
+python examples/07-modbus-rtu-crc/crc16.py
+```
+
+`05/06` 使用 `127.0.0.1:1502` 的标准 Modbus TCP 帧；`07` 不建立网络连接。实验代码仅用于模拟学习，不可直接用于真实工业控制系统。
 
 > 本仓库的 Linux 构建环境未安装 .NET SDK，因而 C# / WPF 运行需要在装有 .NET SDK 的 Windows 开发机完成；Python 模拟器可以独立测试。

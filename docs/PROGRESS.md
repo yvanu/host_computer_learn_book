@@ -21,20 +21,28 @@
 
 | 验证内容 | 状态 | 说明 |
 | --- | --- | --- |
-| VitePress 文档站生产构建 | 已通过 | 2026-10-08 复用现有 VitePress 1.6.4，限额内存构建成功 |
+| VitePress 文档站生产构建 | 已通过 | v0.2 新章节使用现有 VitePress 1.6.4，限制 Node heap 256 MB 后构建通过（2026-10-08） |
 | Python 设备模拟器联调 | 已通过 | Python unittest 3 项：初始遥测、合法指令 ACK、非法转速拒绝 |
-| Cloudflare Docs 网页验收 | 已通过 | workers.dev 域名首页、路线图、入门、C#、TCP、进度页面均返回 HTTP 200；自定义域名 DNS/TLS 待确认 |
+| Cloudflare Docs 网页验收 | 已通过 | 自定义域名 https://docs.host.majhoon.site 曾在 2026-10-08 验证 HTTPS 及 HTTP 200；新章节上线后另行复测 |
+| Modbus TCP 模拟器 / 原始帧客户端 | 已通过 | 实际 TCP socket 联调覆盖 FC03、FC06、半包、粘包、异常码、截断帧、写入回读等 13 项 |
+| RTU CRC16 校验 | 已通过 | 已知 CRC 向量、损坏报文、短帧 3 项 |
 | .NET 控制台示例编译运行 | 未验证 | 当前服务器未安装 dotnet SDK，需在 Windows 或安装 SDK 的机器验证 |
 | WPF Windows 编译运行 | 未验证 | 需要 Windows 图形环境；Linux 服务器不可代测 |
 | 真实 PLC/Modbus RTU 联调 | 未开始 | 后续章节与设备条件就绪时再做 |
 
-## 下一阶段 · v0.2 计划
+## v0.2 · 工业通信实战（本轮新增）
 
-- [ ] C# 属性、接口、事件、泛型的专项练习与标准答案
-- [ ] 串口虚拟端口实战及 CRC16 Modbus 例程
-- [ ] Modbus TCP 服务端模拟、寄存器映射与读写练习
-- [ ] 断线重连与超时、异常测试
-- [ ] 每章配套 10～15 道测验及讲解
+- [x] C# 属性、接口、事件、泛型入门练习与参考答案
+- [x] Modbus TCP Python 模拟设备（FC03/FC06）、寄存器映射与只读/可控写入
+- [x] Python 原始帧检查客户端：读取、写入模拟转速、回读确认
+- [x] C# Modbus TCP 客户端源码：MBAP 精确分帧、事务号与错误检查（**待 .NET SDK 编译验收**）
+- [x] Modbus RTU CRC16 练习：已知校验向量、故障报文拒绝
+- [x] 基础联调排障教程与 Modbus 自测 12 题（含解析）
+- [x] Python 自动化测试共 **19 项**：旧版文本设备 3 项、Modbus TCP 13 项、CRC 3 项
+- [ ] Windows 上 .NET 10 / WPF / C# Modbus 客户端编译和界面验收（当前 Linux 服务器无 SDK）
+- [ ] 真实串口虚拟端口收发练习与串口驱动配置
+- [ ] C# 受控断线重连与超时专项单元测试
+- [ ] 更多章节的 10～15 题专项题库
 
 ## 后续 · v0.3+
 

@@ -7,6 +7,7 @@
 - [🚀 第一课：怎么开始](docs/00-start/index.md)
 - [💻 可运行配套示例](examples/)
 - [📋 内容完成度与下一步](docs/PROGRESS.md)
+- [🧪 Modbus TCP 实操与 12 道自测题](docs/04-modbus/tcp-lab.md)
 
 ## 教材目标
 
@@ -22,6 +23,9 @@
 | [02 Python 模拟设备](examples/02-device-simulator/) | 模拟传感器 TCP 长连接 | Python 3.10+，跨平台 |
 | [03 C# TCP 客户端](examples/03-tcp-client/) | 行协议、异步、收发数据 | .NET 10，跨平台 |
 | [04 WPF 监控面板](examples/04-wpf-monitor/) | 数据绑定、MVVM、实时状态 | Windows，.NET 10 |
+| [05 Modbus TCP 模拟器](examples/05-modbus-tcp-simulator/) | MBAP、FC03、FC06、异常响应 | Python 3.10+，跨平台 |
+| [06 C# Modbus 客户端](examples/06-modbus-tcp-client/) | 精确分帧、读写寄存器、响应匹配 | .NET 10，跨平台 |
+| [07 RTU CRC16 校验](examples/07-modbus-rtu-crc/) | 反射多项式、低字节先发 | Python 3.10+，跨平台 |
 
 > 即使没有 PLC、串口转换器或实际传感器，也能先用模拟设备练习。上位机控制真实工业设备时，必须遵守设备厂商说明和现场安全规程。
 
