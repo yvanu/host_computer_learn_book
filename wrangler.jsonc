@@ -3,6 +3,9 @@
   "name": "host-computer-learn-docs",
   "compatibility_date": "2026-10-08",
   "workers_dev": true,
+  "routes": [
+    { "pattern": "docs.host.majhoon.site", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./docs/.vitepress/dist"
   }

@@ -2,7 +2,7 @@
 
 一份面向**有后端经验、想转上位机开发**的中文实战教程。使用 C# / WPF / TCP / 串口 / Modbus，从第一个控制台程序走到工业监控上位机。
 
-- [📖 在线学习手册](https://host-computer-learn-docs.yvanu.workers.dev/)
+- [📖 在线学习手册](https://host-computer-learn-docs.1124645485.workers.dev/)
 - [🗺️ 完整学习路线](docs/roadmap.md)
 - [🚀 第一课：怎么开始](docs/00-start/index.md)
 - [💻 可运行配套示例](examples/)

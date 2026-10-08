@@ -1,5 +1,9 @@
 # 文档站发布与增量维护
 
+当前可访问的发布地址：<https://host-computer-learn-docs.1124645485.workers.dev/>。
+
+自定义域名 `docs.host.majhoon.site` 已加入 Cloudflare 配置，但须确认 DNS 和 TLS 生效后再作为正式入口。
+
 ## 本地预览
 
 ```bash

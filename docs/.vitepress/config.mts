@@ -1,6 +1,5 @@
-import { defineConfig } from 'vitepress'
-
-export default defineConfig({
+// Plain VitePress configuration; avoids coupling builds to a locally installed package.
+export default {
   lang: 'zh-CN',
   title: '上位机开发学习手册',
   description: '为有后端经验的工程师设计的 C#、WPF、工业通信实战教材',
@@ -92,7 +91,5 @@ export default defineConfig({
     lightModeSwitchTitle: '浅色模式',
     darkModeSwitchTitle: '深色模式'
   },
-  vite: {
-    // Custom global styling keeps the familiar VitePress navigation and search.
-  }
-})
+  vite: {}
+}

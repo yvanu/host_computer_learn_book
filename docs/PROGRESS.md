@@ -21,8 +21,9 @@
 
 | 验证内容 | 状态 | 说明 |
 | --- | --- | --- |
-| VitePress 文档站生产构建 | 待记录 | 运行 npm run docs:build 后更新 |
-| Python 设备模拟器联调 | 待记录 | 启动模拟器，TCP 客户端读帧并核验返回 |
+| VitePress 文档站生产构建 | 已通过 | 2026-10-08 复用现有 VitePress 1.6.4，限额内存构建成功 |
+| Python 设备模拟器联调 | 已通过 | Python unittest 3 项：初始遥测、合法指令 ACK、非法转速拒绝 |
+| Cloudflare Docs 网页验收 | 已通过 | workers.dev 域名首页、路线图、入门、C#、TCP、进度页面均返回 HTTP 200；自定义域名 DNS/TLS 待确认 |
 | .NET 控制台示例编译运行 | 未验证 | 当前服务器未安装 dotnet SDK，需在 Windows 或安装 SDK 的机器验证 |
 | WPF Windows 编译运行 | 未验证 | 需要 Windows 图形环境；Linux 服务器不可代测 |
 | 真实 PLC/Modbus RTU 联调 | 未开始 | 后续章节与设备条件就绪时再做 |
