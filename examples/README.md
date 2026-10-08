@@ -56,7 +56,7 @@ dotnet restore examples/08-wpf-modbus-monitor/IndustrialMonitor.csproj
 dotnet run --project examples/08-wpf-modbus-monitor
 ```
 
-操作“连接设备”，观察实时温度、报警、历史 SQLite 存储并可导出 CSV。**WPF 工程须在 Windows 验证编译与 GUI，Linux 服务器没有 SDK，当前未做编译通过宣称。**
+操作“连接设备”，观察实时温度、报警、历史 SQLite 存储并可导出 CSV。**WPF 工程已通过 GitHub 托管 Windows .NET 10 编译检查；真实 Windows GUI 运行及数据库操作仍需手动验收。**
 
 所有实验代码仅用于模拟学习，不可直接用于真实工业控制系统。
 

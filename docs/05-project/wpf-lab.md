@@ -47,7 +47,7 @@ dotnet run --project examples/08-wpf-modbus-monitor
 点击**连接设备**后观察温度折线和报警事件。点击**断开连接**会停止轮询，但已有历史数据库仍可以导出。
 
 > [!WARNING] Windows 编译验收状态
-> 本书的服务器是低内存 Linux，没有安装 .NET SDK，也不具备 WPF 图形环境。因此**本章节源码已经写入仓库，但尚未声明在 Windows 编译及图形运行通过**。Python 模拟器与 Modbus 网络测试已经验证；请在 Windows 按上述步骤操作并记录结果。
+> 本书的服务器是低内存 Linux，没有安装 .NET SDK，也不具备 WPF 图形环境。当前源码已在 [GitHub 托管 Windows 运行器](https://github.com/yvanu/host_computer_learn_book/actions/runs/37806813899) **成功编译**，但云端编译不等同于真正打开界面后完成操作验收。Python 模拟器与 Modbus 网络测试已通过；请在 Windows 按上述步骤运行并记录真实交互结果。
 
 ## 三、把项目结构理解成你熟悉的后端分层
 

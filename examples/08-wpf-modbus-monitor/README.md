@@ -69,7 +69,7 @@ FROM readings WHERE alarm = 1 ORDER BY id DESC LIMIT 20;
 
 ## 已知边界
 
-- Windows 上的 C# 编译、WPF UI 与 SQLite 原生依赖运行**尚待在带 .NET 10 SDK 的 Windows 机器验证**；本次服务器无 SDK，不把静态 XML 验证当成完整编译通过。
+- Windows 上的 C# / WPF / SQLite 项目**编译已经由 GitHub 托管 Windows 运行器验收通过**（[构建记录](https://github.com/yvanu/host_computer_learn_book/actions/runs/37806813899)）；但真正打开 WPF UI、采集、SQLite 原生库运行、CSV 导出仍需有图形桌面的 Windows 实测。
 - 只支持一个固定的模拟设备，不做任意 PLC 地址配置，不具备生产现场的权限体系和安全联锁。
 - 高温告警阈值固定 32 ℃，不支持历史报警确认/解除流程；后续可独立建报警表。
 - 只有一个只读轮询任务，没有自动重连；这是为了让你先能观察断线发生的状态，并练习主动重新连接。

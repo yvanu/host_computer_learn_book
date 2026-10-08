@@ -26,8 +26,8 @@
 | Cloudflare Docs 网页验收 | 已通过 | 自定义域名 https://docs.host.majhoon.site 曾在 2026-10-08 验证 HTTPS 及 HTTP 200；新章节上线后另行复测 |
 | Modbus TCP 模拟器 / 原始帧客户端 | 已通过 | 实际 TCP socket 联调覆盖 FC03、FC06、半包、粘包、异常码、截断帧、写入回读等 14 项（增加动态温度测试） |
 | RTU CRC16 校验 | 已通过 | 已知 CRC 向量、损坏报文、短帧 3 项 |
-| .NET 控制台示例编译运行 | 未验证 | 当前服务器未安装 dotnet SDK，需在 Windows 或安装 SDK 的机器验证 |
-| WPF Windows 编译运行 | 未验证 | 需要 Windows 图形环境；Linux 服务器不可代测 |
+| 5 个 C# 项目 Windows 编译 | 已通过 | GitHub 托管 Windows 运行器 .NET 10 构建全部通过，提交 a3f4e4c；包含 WPF + SQLite 和各控制台项目 |
+| WPF GUI 桌面操作与 SQLite 实际落盘 | 未验证 | Windows 云端已编译通过，但自动化构建不会打开 GUI 或测试实际交互，需要 Windows 图形机器验收 |
 | 真实 PLC/Modbus RTU 联调 | 未开始 | 后续章节与设备条件就绪时再做 |
 
 ## v0.2 · 工业通信实战（本轮新增）
@@ -54,7 +54,7 @@
 - [x] 模拟器增加 `--dynamic` 温度曲线模式；旧版无参数模式和测试保持兼容
 - [x] [05-3 实战](/05-project/wpf-lab) / [05-4 故障和验收](/05-project/monitor-exercises) 两章配套中文教学
 - [x] Python 20 项测试通过，新工程两个 XAML 文件通过 XML 结构检查
-- [ ] Windows GitHub Actions 编译结果待验收（CI 已配置；不等同于 Windows GUI 运行测试）
+- [x] Windows GitHub Actions 编译通过（5 个 C# 项目，运行记录 https://github.com/yvanu/host_computer_learn_book/actions/runs/37806813899）；**不等同于 Windows GUI 运行测试**
 - [ ] Windows 本机运行：确认连接、温度变化、报警切换、SQLite 写入和 CSV 导出
 
 ## 后续 · v0.4+
