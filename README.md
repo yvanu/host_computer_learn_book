@@ -8,6 +8,7 @@
 - [💻 可运行配套示例](examples/)
 - [📋 内容完成度与下一步](docs/PROGRESS.md)
 - [🧪 Modbus TCP 实操与 12 道自测题](docs/04-modbus/tcp-lab.md)
+- [🖥️ WPF 工业监控实战](docs/05-project/wpf-lab.md)
 
 ## 教材目标
 
@@ -26,6 +27,7 @@
 | [05 Modbus TCP 模拟器](examples/05-modbus-tcp-simulator/) | MBAP、FC03、FC06、异常响应 | Python 3.10+，跨平台 |
 | [06 C# Modbus 客户端](examples/06-modbus-tcp-client/) | 精确分帧、读写寄存器、响应匹配 | .NET 10，跨平台 |
 | [07 RTU CRC16 校验](examples/07-modbus-rtu-crc/) | 反射多项式、低字节先发 | Python 3.10+，跨平台 |
+| [08 WPF 工业监控台](examples/08-wpf-modbus-monitor/) | Modbus 采集、实时温度曲线、高温报警、SQLite、CSV | Windows / .NET 10 + SQLite 驱动 |
 
 > 即使没有 PLC、串口转换器或实际传感器，也能先用模拟设备练习。上位机控制真实工业设备时，必须遵守设备厂商说明和现场安全规程。
 

@@ -44,5 +44,7 @@ features:
 
 **第四步：** 进入 [Modbus TCP 实操](/04-modbus/tcp-lab)，理解真实 MBAP 帧、功能码与寄存器读写，再做 [RTU CRC16 校验实验](/04-modbus/crc-lab)。
 
+**第五步：** 用 [WPF 工业监控实战](/05-project/wpf-lab) 把采集、实时趋势、高温报警和 SQLite 历史数据串成完整的 Windows 桌面项目。
+
 > [!TIP] 学习方法
 > 每课先自己运行实验，再尝试不看答案完成课后练习。能解释为什么这样设计，才算真正学会。

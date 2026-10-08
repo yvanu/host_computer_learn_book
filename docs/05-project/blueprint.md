@@ -36,7 +36,12 @@ DeviceSnapshot（温度/压力/转速/状态）
   └─> Storage （后台批量写入 SQLite/CSV）
 ```
 
-v0.1 的 WPF 示例只实现一个设备的**连接 + 实时数值**，以保持初学者理解成本低。设计中的设备管理、告警、历史数据和存储属于后续版本，尚未声称实现。
+现在已经提供两套渐进式示例：
+
+- **v0.1 入门**：`examples/04-wpf-monitor/`，用简单文本 TCP 设备体验 WPF Binding。
+- **v0.3 实战**：`examples/08-wpf-modbus-monitor/`，使用标准 Modbus TCP FC03 读取本地模拟器，支持实时温度趋势、高温状态、SQLite 历史与 CSV 导出。教程见 [05-3 上位机监控实战](/05-project/wpf-lab)。
+
+注意 v0.3 仍是**单设备、只读、模拟环境**，多设备配置、生产级历史报警、现场写入安全属于后续扩展。WPF Windows 编译验收仍待完成。
 
 ## 数据与交互要求
 

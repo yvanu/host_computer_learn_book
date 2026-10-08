@@ -8,6 +8,14 @@
 python examples/05-modbus-tcp-simulator/simulator.py
 ```
 
+要给 [WPF 工业监控台](../08-wpf-modbus-monitor/) 演示实时温度折线和报警，使用动态模式：
+
+```powershell
+python examples/05-modbus-tcp-simulator/simulator.py --dynamic
+```
+
+动态模式每秒产生一笔温度变化，从 25.3 ℃ 上升到约 37.3 ℃ 再回落；超过 32.0 ℃ 时可触发 UI 报警。默认无参数模式仍保持固定寄存器值，方便运行早期单元测试。
+
 寄存器与模拟数据：
 
 | Holding Register 报文偏移 | 显示编号（常见约定） | 解释 | 初始原始值 |

@@ -37,6 +37,16 @@ class ModbusTcpTests(unittest.IsolatedAsyncioTestCase):
         await self.writer.drain()
         return await receive(self.reader)
 
+    async def test_dynamic_triangle_wave_raises_and_clears_alarm(self):
+        bank = RegisterBank()
+        for _ in range(20):
+            bank.tick()
+        self.assertEqual(bank.values[0], 373)  # 37.3 C >= 32 C threshold
+        self.assertEqual(bank.values[1] // 10, 101)
+        for _ in range(20):
+            bank.tick()
+        self.assertEqual(bank.values[0], 253)  # returns to normal
+
     async def test_read_three_registers(self):
         self.assertEqual(await self.send(request(5, 3, 0, 3)),
                          (5, 0, 1, b"\x03\x06\x00\xfd\x03\xf4\x04\xb0"))

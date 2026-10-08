@@ -16,7 +16,7 @@ export default {
     nav: [
       { text: '开始学习', link: '/00-start/' },
       { text: '学习路线', link: '/roadmap' },
-      { text: '练习项目', link: '/05-project/blueprint' },
+      { text: '综合项目', link: '/05-project/wpf-lab' },
       { text: '学习进度', link: '/PROGRESS' },
       { text: 'GitHub', link: 'https://github.com/yvanu/host_computer_learn_book' }
     ],
@@ -75,7 +75,9 @@ export default {
         text: '05 · 综合项目',
         items: [
           { text: '05-1 工业监控项目设计', link: '/05-project/blueprint' },
-          { text: '05-2 分阶段验收', link: '/05-project/steps' }
+          { text: '05-2 分阶段验收', link: '/05-project/steps' },
+          { text: '05-3 WPF + Modbus 监控台', link: '/05-project/wpf-lab' },
+          { text: '05-4 报警与历史实战', link: '/05-project/monitor-exercises' }
         ]
       },
       {

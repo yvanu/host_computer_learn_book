@@ -20,6 +20,13 @@ class RegisterBank:
     def __init__(self) -> None:
         self.values = [253, 1012, 1200]
 
+    def tick(self) -> None:
+        """Optional triangle-wave temperature for the graphical monitoring lab."""
+        phase = getattr(self, "_tick", 0) + 1
+        self._tick = phase % 40
+        self.values[0] = 253 + 6 * min(self._tick, 40 - self._tick)
+        self.values[1] = 1012 + (self._tick % 5)
+
     def handle_pdu(self, pdu: bytes) -> bytes:
         if not pdu:
             raise ValueError("Missing function code")
@@ -79,7 +86,7 @@ async def handle_client(
             pass
 
 
-async def main() -> None:
+async def main(dynamic: bool = False) -> None:
     bank = RegisterBank()
     server = await asyncio.start_server(
         lambda reader, writer: handle_client(reader, writer, bank), HOST, PORT
@@ -87,12 +94,32 @@ async def main() -> None:
     print(f"Modbus TCP training simulator: {HOST}:{PORT}, unit={UNIT_ID}")
     print("Holding registers: offset 0=253 (25.3°C), 1=1012 (101.2kPa), 2=1200 rpm")
     print("Supports FC03 read and FC06 write offset 2 only; Ctrl+C to stop.")
+    if dynamic:
+        print("Dynamic demonstration: temperature triangle wave, alarm threshold 32 °C.")
+
+    async def vary_values() -> None:
+        while True:
+            await asyncio.sleep(1)
+            bank.tick()
+
     async with server:
-        await server.serve_forever()
+        task = asyncio.create_task(vary_values()) if dynamic else None
+        try:
+            await server.serve_forever()
+        finally:
+            if task:
+                task.cancel()
+                try:
+                    await task
+                except asyncio.CancelledError:
+                    pass
 
 
 if __name__ == "__main__":
+    import sys
+    if sys.argv[1:] not in ([], ["--dynamic"]):
+        raise SystemExit("Usage: python simulator.py [--dynamic]")
     try:
-        asyncio.run(main())
+        asyncio.run(main(dynamic=sys.argv[1:] == ["--dynamic"]))
     except KeyboardInterrupt:
         print("Simulator stopped")
