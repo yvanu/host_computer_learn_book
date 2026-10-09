@@ -21,12 +21,12 @@
 
 | 验证内容 | 状态 | 说明 |
 | --- | --- | --- |
-| VitePress 文档站生产构建 | 已通过 | v0.2 新章节使用现有 VitePress 1.6.4，限制 Node heap 256 MB 后构建通过（2026-10-08） |
+| VitePress 文档站生产构建 | 已通过 | v0.4 章节使用现有 VitePress 1.6.4，Node heap 256 MB 下构建成功（2026-10-09） |
 | Python 设备模拟器联调 | 已通过 | Python unittest 3 项：初始遥测、合法指令 ACK、非法转速拒绝 |
-| Cloudflare Docs 网页验收 | 已通过 | 自定义域名 https://docs.host.majhoon.site 曾在 2026-10-08 验证 HTTPS 及 HTTP 200；新章节上线后另行复测 |
-| Modbus TCP 模拟器 / 原始帧客户端 | 已通过 | 实际 TCP socket 联调覆盖 FC03、FC06、半包、粘包、异常码、截断帧、写入回读等 14 项（增加动态温度测试） |
+| Cloudflare Docs 网页验收 | 已通过 | 2026-10-09：自定义域名、首页、05-5/05-6 新章节及进度页均 HTTPS 验证通过、HTTP 200 |
+| Modbus TCP 模拟器 / 原始帧客户端 | 已通过 | 共 16 项：含两台独立模拟设备 TCP socket 和寄存器隔离、动态温度、FC03/FC06、半包/粘包、异常码 |
 | RTU CRC16 校验 | 已通过 | 已知 CRC 向量、损坏报文、短帧 3 项 |
-| 5 个 C# 项目 Windows 编译 | 已通过 | GitHub 托管 Windows 运行器 .NET 10 构建全部通过，提交 a3f4e4c；包含 WPF + SQLite 和各控制台项目 |
+| 6 个 C# 项目 Windows 编译 | 已通过 | GitHub Windows .NET 10 构建完成，v0.4 提交 be5a71c：[CI 记录](https://github.com/yvanu/host_computer_learn_book/actions/runs/37869098891) |
 | WPF GUI 桌面操作与 SQLite 实际落盘 | 未验证 | Windows 云端已编译通过，但自动化构建不会打开 GUI 或测试实际交互，需要 Windows 图形机器验收 |
 | 真实 PLC/Modbus RTU 联调 | 未开始 | 后续章节与设备条件就绪时再做 |
 
@@ -39,7 +39,7 @@
 - [x] Modbus RTU CRC16 练习：已知校验向量、故障报文拒绝
 - [x] 基础联调排障教程与 Modbus 自测 12 题（含解析）
 - [x] Python 自动化测试共 **20 项**：旧版文本设备 3 项、Modbus TCP 14 项、CRC 3 项
-- [ ] Windows 上 .NET 10 / WPF / C# Modbus 客户端编译和界面验收（当前 Linux 服务器无 SDK）
+- [x] Windows .NET 10 / WPF / C# Modbus 项目 CI 编译已通过；真实 GUI 交互验收仍待 Windows 图形机操作
 - [ ] 真实串口虚拟端口收发练习与串口驱动配置
 - [ ] C# 受控断线重连与超时专项单元测试
 - [ ] 更多章节的 10～15 题专项题库
@@ -69,7 +69,7 @@
 - [x] 新增 [05-5 两台设备采集](/05-project/multi-device-lab)、[05-6 SQLite 与阈值](/05-project/history-alerts) 课程
 - [x] Python **22 项**测试通过，其中 Modbus TCP 16 项包含双 socket、寄存器隔离和模拟温度
 - [x] WPF XAML 两文件 XML 结构检查通过；文档站待同步部署
-- [ ] Windows .NET 10 CI 6 项工程编译验收（待本次提交后确认）
+- [x] Windows .NET 10 CI **6 个 C# 工程编译通过**：[be5a71c 的运行记录](https://github.com/yvanu/host_computer_learn_book/actions/runs/37869098891)
 - [ ] Windows WPF 实际 GUI、重连与 SQLite 分页交互验收
 
 ## 后续 · v0.5+

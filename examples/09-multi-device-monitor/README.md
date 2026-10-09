@@ -67,7 +67,7 @@ python -c "import os,sqlite3; p=os.path.join(os.environ['LOCALAPPDATA'],'HostCom
 
 ## 编译/测试边界
 
-这个服务器没有安装 .NET SDK，避免为验收占用其有限内存；新增项目在提交后交由仓库 GitHub Actions 的 **Windows .NET 10 CI** 编译验收。CI 编译通过也不等于已点击窗口、人工验证 SQLite 和告警状态；完整交互需要 Windows 图形桌面。
+这个服务器没有安装 .NET SDK，避免为验收占用其有限内存；新增工程已通过 [GitHub Windows .NET 10 CI 编译](https://github.com/yvanu/host_computer_learn_book/actions/runs/37869098891)（6 个 C# 项目全部通过）。**CI 编译通过不等于实际启动图形界面并验证 SQLite、重连和报警**，完整交互仍需 Windows 图形桌面验收。
 
 工程**仅允许 localhost 端口 1502/1503**，是教学项目，不是工业现场 SCADA，绝不可直接用于生产机器控制。
 
