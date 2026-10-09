@@ -46,5 +46,7 @@ features:
 
 **第五步：** 用 [WPF 工业监控实战](/05-project/wpf-lab) 把采集、实时趋势、高温报警和 SQLite 历史数据串成完整的 Windows 桌面项目。
 
+**第六步：** 进入 [v0.4 双设备监控](/05-project/multi-device-lab)：两台独立模拟 PLC 同时连接、受控退避重连、独立报警阈值，以及 [SQLite 分页查询实战](/05-project/history-alerts)。
+
 > [!TIP] 学习方法
 > 每课先自己运行实验，再尝试不看答案完成课后练习。能解释为什么这样设计，才算真正学会。

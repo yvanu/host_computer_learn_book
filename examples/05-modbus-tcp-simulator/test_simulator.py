@@ -37,6 +37,51 @@ class ModbusTcpTests(unittest.IsolatedAsyncioTestCase):
         await self.writer.drain()
         return await receive(self.reader)
 
+    async def test_two_mock_plcs_have_independent_sockets(self):
+        a, b = RegisterBank(253), RegisterBank(278)
+        s1 = await asyncio.start_server(
+            lambda r, w: handle_client(r, w, a), "127.0.0.1", 0)
+        s2 = await asyncio.start_server(
+            lambda r, w: handle_client(r, w, b), "127.0.0.1", 0)
+        try:
+            r1, w1 = await asyncio.open_connection(
+                "127.0.0.1", s1.sockets[0].getsockname()[1])
+            r2, w2 = await asyncio.open_connection(
+                "127.0.0.1", s2.sockets[0].getsockname()[1])
+            try:
+                w1.write(request(10, 6, 2, 1550))
+                await w1.drain()
+                self.assertEqual((await receive(r1))[-1],
+                                 bytes.fromhex("06 00 02 06 0E"))
+                w2.write(request(11, 3, 2, 1))
+                await w2.drain()
+                self.assertEqual((await receive(r2))[-1],
+                                 bytes.fromhex("03 02 04 B0"))
+                w2.write(request(12, 3, 0, 1))
+                await w2.drain()
+                self.assertEqual((await receive(r2))[-1],
+                                 bytes.fromhex("03 02 01 16"))
+            finally:
+                w1.close()
+                w2.close()
+                await w1.wait_closed()
+                await w2.wait_closed()
+        finally:
+            s1.close()
+            s2.close()
+            await s1.wait_closed()
+            await s2.wait_closed()
+
+    async def test_independent_device_register_banks(self):
+        device_a = RegisterBank(253)
+        device_b = RegisterBank(278)
+        device_a.handle_pdu(b"\x06\x00\x02\x05\xdc")
+        self.assertEqual(device_a.values[2], 1500)
+        self.assertEqual(device_b.values[2], 1200)
+        device_b.tick()
+        self.assertEqual(device_a.values[0], 253)
+        self.assertEqual(device_b.values[0], 284)
+
     async def test_dynamic_triangle_wave_raises_and_clears_alarm(self):
         bank = RegisterBank()
         for _ in range(20):

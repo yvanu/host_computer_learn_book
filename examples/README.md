@@ -58,6 +58,18 @@ dotnet run --project examples/08-wpf-modbus-monitor
 
 操作“连接设备”，观察实时温度、报警、历史 SQLite 存储并可导出 CSV。**WPF 工程已通过 GitHub 托管 Windows .NET 10 编译检查；真实 Windows GUI 运行及数据库操作仍需手动验收。**
 
+## 09 · 双设备进阶版（Windows）
+
+```powershell
+# 终端 1：同一台电脑上模拟两台独立 PLC
+python examples/05-modbus-tcp-simulator/simulator.py --devices 2 --dynamic
+
+# 终端 2：独立 TCP 会话、报警阈值、历史分页与有限重连
+dotnet run --project examples/09-multi-device-monitor/MultiDeviceMonitor.csproj
+```
+
+多设备版使用独立的 `monitor_v04.sqlite`，**不会覆盖 v0.3 的数据库**；每台设备单独连接，输出 CSV 仅包含选中设备的采样。
+
 所有实验代码仅用于模拟学习，不可直接用于真实工业控制系统。
 
 > 本仓库的 Linux 构建环境未安装 .NET SDK，因而 C# / WPF 运行需要在装有 .NET SDK 的 Windows 开发机完成；Python 模拟器可以独立测试。

@@ -57,11 +57,26 @@
 - [x] Windows GitHub Actions 编译通过（5 个 C# 项目，运行记录 https://github.com/yvanu/host_computer_learn_book/actions/runs/37806813899）；**不等同于 Windows GUI 运行测试**
 - [ ] Windows 本机运行：确认连接、温度变化、报警切换、SQLite 写入和 CSV 导出
 
-## 后续 · v0.4+
+## v0.4 · 多设备连接与历史分页（2026-10-09）
 
-- [ ] 多设备列表、独立连接会话和采集调度
-- [ ] 历史查询与 SQLite 分页、可配置报警阈值与事件确认
-- [ ] 受控重连与异常、负载和长期运行测试
+- [x] 新建独立的 `examples/09-multi-device-monitor/` 进阶工程；保留 v0.3 课程和数据库
+- [x] 本地模拟 PLC 支持 `--devices 2 --dynamic`，分别绑定 127.0.0.1:1502 和 :1503
+- [x] 两台设备独立 `DevicePanel` 状态、独立 `DeviceSession` 和只读 FC03 采集
+- [x] 受控自动重连：连续失败至多重试 3 次，间隔 1/2/4 秒；协议异常不盲目重连；允许取消
+- [x] 设备独立阈值（20.0～80.0 ℃）与高温进入/恢复事件
+- [x] SQLite `monitor_v04.sqlite` 按 `device_id` 隔离，后台有界队列（240 条）
+- [x] 选中设备历史分页查询（20 条/页）、参数化 SQL 和 CSV 单设备导出
+- [x] 新增 [05-5 两台设备采集](/05-project/multi-device-lab)、[05-6 SQLite 与阈值](/05-project/history-alerts) 课程
+- [x] Python **22 项**测试通过，其中 Modbus TCP 16 项包含双 socket、寄存器隔离和模拟温度
+- [x] WPF XAML 两文件 XML 结构检查通过；文档站待同步部署
+- [ ] Windows .NET 10 CI 6 项工程编译验收（待本次提交后确认）
+- [ ] Windows WPF 实际 GUI、重连与 SQLite 分页交互验收
+
+## 后续 · v0.5+
+
+- [ ] 设备配置持久化、断线后的事件审计、报警确认/恢复表
+- [ ] 长期稳定性与内存曲线、多设备采集压力测试
+- [ ] SQLite 游标分页与数据保留策略
 - [ ] 工程化测试、发布安装包和签名
 - [ ] 进阶工业协议：OPC UA、CAN、PLC 厂商差异
 - [ ] 求职面试题与项目复盘

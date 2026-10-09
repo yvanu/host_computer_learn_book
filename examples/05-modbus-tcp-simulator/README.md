@@ -16,6 +16,14 @@ python examples/05-modbus-tcp-simulator/simulator.py --dynamic
 
 动态模式每秒产生一笔温度变化，从 25.3 ℃ 上升到约 37.3 ℃ 再回落；超过 32.0 ℃ 时可触发 UI 报警。默认无参数模式仍保持固定寄存器值，方便运行早期单元测试。
 
+v0.4 [多设备监控实验](../09-multi-device-monitor/)可增加 `--devices 2`：
+
+```powershell
+python examples/05-modbus-tcp-simulator/simulator.py --devices 2 --dynamic
+```
+
+第二台模拟设备监听 `127.0.0.1:1503`，寄存器和连接彼此独立（初始温度 27.8 ℃），用于测试多设备数据隔离和互不影响。
+
 寄存器与模拟数据：
 
 | Holding Register 报文偏移 | 显示编号（常见约定） | 解释 | 初始原始值 |

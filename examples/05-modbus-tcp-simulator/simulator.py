@@ -17,14 +17,15 @@ MAX_LENGTH = 254  # MBAP Length = Unit ID (1) + PDU (at most 253)
 class RegisterBank:
     """Offsets: 0 temperature x10, 1 pressure x10, 2 motor RPM."""
 
-    def __init__(self) -> None:
-        self.values = [253, 1012, 1200]
+    def __init__(self, temperature_base: int = 253) -> None:
+        self._temperature_base = temperature_base
+        self.values = [temperature_base, 1012, 1200]
 
     def tick(self) -> None:
         """Optional triangle-wave temperature for the graphical monitoring lab."""
         phase = getattr(self, "_tick", 0) + 1
         self._tick = phase % 40
-        self.values[0] = 253 + 6 * min(self._tick, 40 - self._tick)
+        self.values[0] = self._temperature_base + 6 * min(self._tick, 40 - self._tick)
         self.values[1] = 1012 + (self._tick % 5)
 
     def handle_pdu(self, pdu: bytes) -> bytes:
@@ -86,40 +87,49 @@ async def handle_client(
             pass
 
 
-async def main(dynamic: bool = False) -> None:
-    bank = RegisterBank()
-    server = await asyncio.start_server(
-        lambda reader, writer: handle_client(reader, writer, bank), HOST, PORT
-    )
-    print(f"Modbus TCP training simulator: {HOST}:{PORT}, unit={UNIT_ID}")
-    print("Holding registers: offset 0=253 (25.3°C), 1=1012 (101.2kPa), 2=1200 rpm")
-    print("Supports FC03 read and FC06 write offset 2 only; Ctrl+C to stop.")
+async def main(dynamic: bool = False, devices: int = 1) -> None:
+    # The second independent mock PLC listens on 1503, with a different temperature baseline.
+    banks = [RegisterBank(253 + i * 25) for i in range(devices)]
+    servers = []
+    for i, bank in enumerate(banks):
+        server = await asyncio.start_server(
+            lambda reader, writer, device=bank: handle_client(reader, writer, device),
+            HOST, PORT + i
+        )
+        servers.append(server)
+        print(f"Modbus TCP mock #{i + 1}: {HOST}:{PORT + i}, unit={UNIT_ID}")
+    print("Registers 0/1/2 = temperature x10, pressure x10, RPM. FC03/FC06.")
     if dynamic:
-        print("Dynamic demonstration: temperature triangle wave, alarm threshold 32 °C.")
+        print("Dynamic temperature enabled (1-second interval).")
 
     async def vary_values() -> None:
         while True:
             await asyncio.sleep(1)
-            bank.tick()
+            for bank in banks:
+                bank.tick()
 
-    async with server:
-        task = asyncio.create_task(vary_values()) if dynamic else None
-        try:
-            await server.serve_forever()
-        finally:
-            if task:
-                task.cancel()
-                try:
-                    await task
-                except asyncio.CancelledError:
-                    pass
+    task = asyncio.create_task(vary_values()) if dynamic else None
+    try:
+        await asyncio.gather(*(s.serve_forever() for s in servers))
+    finally:
+        if task:
+            task.cancel()
+            try:
+                await task
+            except asyncio.CancelledError:
+                pass
+        for server in servers:
+            server.close()
+        await asyncio.gather(*(s.wait_closed() for s in servers))
 
 
 if __name__ == "__main__":
-    import sys
-    if sys.argv[1:] not in ([], ["--dynamic"]):
-        raise SystemExit("Usage: python simulator.py [--dynamic]")
+    import argparse
+    parser = argparse.ArgumentParser(description="Local-only Modbus TCP learning PLC")
+    parser.add_argument("--dynamic", action="store_true", help="Change temperature each second")
+    parser.add_argument("--devices", type=int, choices=[1, 2], default=1)
+    args = parser.parse_args()
     try:
-        asyncio.run(main(dynamic=sys.argv[1:] == ["--dynamic"]))
+        asyncio.run(main(dynamic=args.dynamic, devices=args.devices))
     except KeyboardInterrupt:
         print("Simulator stopped")

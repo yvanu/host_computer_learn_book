@@ -11,7 +11,7 @@
 
 记录：Windows 版本、.NET SDK 版本、运行截图、日志片段。
 
-你也可以直接使用 v0.3 [WPF + Modbus TCP 监控台](/05-project/wpf-lab) 完成更完整的模拟实战；本页仍作为分阶段的独立验收清单。
+你可以先使用 v0.3 [WPF + Modbus TCP 监控台](/05-project/wpf-lab) 完成单设备实战，再升级到 v0.4 [双设备会话与历史分页](/05-project/multi-device-lab)。本页仍作为独立验收清单。
 
 ## M2：能解释报文（后续）
 

@@ -41,7 +41,7 @@ DeviceSnapshot（温度/压力/转速/状态）
 - **v0.1 入门**：`examples/04-wpf-monitor/`，用简单文本 TCP 设备体验 WPF Binding。
 - **v0.3 实战**：`examples/08-wpf-modbus-monitor/`，使用标准 Modbus TCP FC03 读取本地模拟器，支持实时温度趋势、高温状态、SQLite 历史与 CSV 导出。教程见 [05-3 上位机监控实战](/05-project/wpf-lab)。
 
-注意 v0.3 仍是**单设备、只读、模拟环境**，多设备配置、生产级历史报警、现场写入安全属于后续扩展。WPF 已通过 Windows CI 编译，但图形桌面联调验收仍待完成。
+v0.4 已加入 [两台模拟设备的独立会话、重连与选中设备历史分页](/05-project/multi-device-lab)，使用新的 `examples/09-multi-device-monitor/`；仍然**仅连接本地模拟器、只读 FC03**。可配报警阈值为内存态，生产级报警确认、持久化设备配置和真实现场写入安全不在本阶段。WPF 图形桌面联调验收仍待完成。
 
 ## 数据与交互要求
 

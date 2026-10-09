@@ -36,7 +36,8 @@ jobs:
             "examples/03-tcp-client/TcpClientDemo.csproj",
             "examples/04-wpf-monitor/WpfMonitor.csproj",
             "examples/06-modbus-tcp-client/ModbusClientDemo.csproj",
-            "examples/08-wpf-modbus-monitor/IndustrialMonitor.csproj"
+            "examples/08-wpf-modbus-monitor/IndustrialMonitor.csproj",
+            "examples/09-multi-device-monitor/MultiDeviceMonitor.csproj"
           )
           foreach ($project in $projects) {
             dotnet build $project --configuration Release --nologo -p:UseSharedCompilation=false -maxcpucount:2
