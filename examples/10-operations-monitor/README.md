@@ -50,11 +50,11 @@ SELECT device_id, event_kind, detail FROM audit_events ORDER BY id DESC LIMIT 20
 dotnet run --project examples/10-operations-monitor/Smoke/SqliteSmoke.csproj -c Release
 ```
 
-该测试在临时文件夹中建立独立数据库，检查配置重启保留、双设备隔离、报警确认、审计记录、游标分页、旧数据清理与 CSV。结束后删除临时文件夹。GitHub Actions 会运行该检查，并打包发布便携式 ZIP。
+该测试在临时文件夹中建立独立数据库，检查配置重启保留、双设备隔离、报警确认、审计记录、游标分页、旧数据清理与 CSV。结束后删除临时文件夹。GitHub Actions 已运行该检查并通过。对应 Windows 编译、SQLite 集成和 ZIP 上传记录：[37870194653](https://github.com/yvanu/host_computer_learn_book/actions/runs/37870194653)。
 
 ## 关于发布包
 
-从 GitHub Actions 的最新 Windows 构建记录进入 **Artifacts → operations-monitor-v05-win-x64**，下载 ZIP 并解压，执行 `OperationsMonitor.exe`。它是便携压缩包而不是 MSI 安装程序；运行电脑必须先安装 [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0) 。仍需另行运行 Python 模拟器。
+从 [GitHub Windows CI 成功记录](https://github.com/yvanu/host_computer_learn_book/actions/runs/37870194653) 的 **Artifacts → operations-monitor-v05-win-x64** 下载 ZIP，**解压一次**，执行 `OperationsMonitor.exe`。它是便携压缩包而不是 MSI 安装程序；运行电脑必须先安装 [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0) 。仍需另行运行 Python 模拟器。
 
 ## 已知边界
 

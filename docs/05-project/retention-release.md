@@ -55,7 +55,7 @@ ORDER BY id DESC LIMIT 21;
 3. 发布 **framework-dependent win-x64** WPF 程序，压缩成 ZIP。
 4. 上传为 GitHub Actions Artifact，名称为 `operations-monitor-v05-win-x64`。
 
-打开 [GitHub Actions](https://github.com/yvanu/host_computer_learn_book/actions/workflows/desktop-build.yml)，点击最近一次成功的运行记录，在页面底部 Artifacts 下载 ZIP。解压后启动 `OperationsMonitor.exe`。
+打开 [已验收通过的 Windows CI 记录](https://github.com/yvanu/host_computer_learn_book/actions/runs/37870194653)，在页面底部 Artifacts 下载 `operations-monitor-v05-win-x64` ZIP。**只需解压一次**即可启动 `OperationsMonitor.exe`。
 
 > [!IMPORTANT] 这不是 MSI 安装程序
 > 压缩包需要 Windows x64，以及 [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0)。它没有代码签名，不是生产交付包，也不会随附真实 PLC 或 Python 模拟器。运行前先在另一终端启动对应模拟设备。

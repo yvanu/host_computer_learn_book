@@ -21,16 +21,16 @@
 
 | 验证内容 | 状态 | 说明 |
 | --- | --- | --- |
-| VitePress 文档站生产构建 | 已通过 | v0.4 章节使用现有 VitePress 1.6.4，Node heap 256 MB 下构建成功（2026-10-09） |
+| VitePress 文档站生产构建 | 已通过 | v0.5 新章节使用现有 VitePress 1.6.4，Node heap 256 MB 下构建成功（2026-10-09） |
 | Python 设备模拟器联调 | 已通过 | Python unittest 3 项：初始遥测、合法指令 ACK、非法转速拒绝 |
-| Cloudflare Docs 网页验收 | 已通过 | 2026-10-09：自定义域名、首页、05-5/05-6 新章节及进度页均 HTTPS 验证通过、HTTP 200 |
+| Cloudflare Docs 网页验收 | 已通过 | 2026-10-09：自定义域名、首页、05-7/05-8 新章节及进度页均 HTTPS 验证通过、HTTP 200 |
 | Modbus TCP 模拟器 / 原始帧客户端 | 已通过 | 共 16 项：含两台独立模拟设备 TCP socket 和寄存器隔离、动态温度、FC03/FC06、半包/粘包、异常码 |
 | RTU CRC16 校验 | 已通过 | 已知 CRC 向量、损坏报文、短帧 3 项 |
 | 6 个 C# 项目 Windows 编译 | 已通过 | GitHub Windows .NET 10 构建完成，v0.4 提交 be5a71c：[CI 记录](https://github.com/yvanu/host_computer_learn_book/actions/runs/37869098891) |
 | WPF GUI 桌面操作与 SQLite 实际落盘 | 未验证 | Windows 云端已编译通过，但自动化构建不会打开 GUI 或测试实际交互，需要 Windows 图形机器验收 |
 | 真实 PLC/Modbus RTU 联调 | 未开始 | 后续章节与设备条件就绪时再做 |
-| v0.5 SQLite 端到端验证 | 待 Windows CI | 在真实 .NET/SQLite 引擎上测试配置、报警、审计、分页和删除，而不是只检查 SQL 文本 |
-| v0.5 便携式 ZIP Artifact | 待 Windows CI | 非 MSI，不签名，电脑需要 .NET 10 Desktop Runtime |
+| v0.5 SQLite 端到端验证 | 已通过 | [Windows CI 37870194653](https://github.com/yvanu/host_computer_learn_book/actions/runs/37870194653)：实际运行 .NET 10 集成测试，覆盖配置、报警、审计、游标分页、清理、CSV |
+| v0.5 便携式 ZIP Artifact | 已通过 | [Windows CI 37870194653](https://github.com/yvanu/host_computer_learn_book/actions/runs/37870194653) 的 Artifacts 已生成 `operations-monitor-v05-win-x64`；非 MSI、未签名，需要 .NET 10 Desktop Runtime |
 
 ## v0.2 · 工业通信实战（本轮新增）
 
@@ -85,8 +85,8 @@
 - [x] 独立 SQLite 无 GUI 集成测试项目，包含重启持久化、双设备隔离、报警确认、游标分页、清理和 CSV
 - [x] 配置 GitHub Windows CI 编译 + SQLite 集成验证 + `win-x64` 框架依赖的 ZIP Artifacts 打包
 - [x] 新增 [05-7 配置与报警审计](/05-project/settings-audit)、[05-8 数据保留与打包](/05-project/retention-release) 两篇教学课程
-- [ ] Windows CI 编译、SQLite 集成测试及 ZIP Artifact 实际成功验收（待推送后检查）
-- [ ] Windows 图形界面手动实测与长时间运行测试
+- [x] [Windows CI 37870194653](https://github.com/yvanu/host_computer_learn_book/actions/runs/37870194653) **8 个 C# 项目编译、SQLite 集成测试、Windows 便携包发布与上传全部通过**
+- [ ] Windows 图形界面手动实测与长时间运行测试（CI 不模拟鼠标交互或真实 PLC）
 
 ## 后续 · v0.6+
 
