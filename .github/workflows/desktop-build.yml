@@ -53,11 +53,10 @@ jobs:
         run: |
           dotnet publish examples/10-operations-monitor/OperationsMonitor.csproj -c Release -r win-x64 --self-contained false -o "$env:RUNNER_TEMP/monitor-v05" --nologo -p:UseSharedCompilation=false -maxcpucount:2
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          Compress-Archive -Path "$env:RUNNER_TEMP/monitor-v05/*" -DestinationPath "$env:RUNNER_TEMP/operations-monitor-v05-win-x64.zip" -Force
       - name: Upload portable Windows package
         uses: actions/upload-artifact@v4
         with:
           name: operations-monitor-v05-win-x64
-          path: ${{ runner.temp }}/operations-monitor-v05-win-x64.zip
+          path: ${{ runner.temp }}/monitor-v05/
           if-no-files-found: error
           retention-days: 14
