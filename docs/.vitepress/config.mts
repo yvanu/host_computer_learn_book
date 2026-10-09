@@ -16,7 +16,7 @@ export default {
     nav: [
       { text: '开始学习', link: '/00-start/' },
       { text: '学习路线', link: '/roadmap' },
-      { text: '综合项目', link: '/05-project/multi-device-lab' },
+      { text: '综合项目', link: '/05-project/settings-audit' },
       { text: '学习进度', link: '/PROGRESS' },
       { text: 'GitHub', link: 'https://github.com/yvanu/host_computer_learn_book' }
     ],
@@ -79,7 +79,9 @@ export default {
           { text: '05-3 WPF + Modbus 监控台', link: '/05-project/wpf-lab' },
           { text: '05-4 报警与历史实战', link: '/05-project/monitor-exercises' },
           { text: '05-5 多设备与自动重连', link: '/05-project/multi-device-lab' },
-          { text: '05-6 SQLite 分页与独立报警', link: '/05-project/history-alerts' }
+          { text: '05-6 SQLite 分页与独立报警', link: '/05-project/history-alerts' },
+          { text: '05-7 配置持久化、报警与审计', link: '/05-project/settings-audit' },
+          { text: '05-8 数据保留与 Windows 发布', link: '/05-project/retention-release' }
         ]
       },
       {

@@ -70,6 +70,21 @@ dotnet run --project examples/09-multi-device-monitor/MultiDeviceMonitor.csproj
 
 多设备版使用独立的 `monitor_v04.sqlite`，**不会覆盖 v0.3 的数据库**；每台设备单独连接，输出 CSV 仅包含选中设备的采样。
 
+## 10 · v0.5 可交付练习版
+
+```powershell
+# 终端 1：模拟两台 PLC
+python examples/05-modbus-tcp-simulator/simulator.py --devices 2 --dynamic
+
+# 终端 2：运行 WPF 可交付练习版
+dotnet run --project examples/10-operations-monitor/OperationsMonitor.csproj
+
+# 无 WPF 的 SQLite 持久化、审计和分页自动化测试
+dotnet run --project examples/10-operations-monitor/Smoke/SqliteSmoke.csproj -c Release
+```
+
+GitHub 的 Windows CI 还会生成 `operations-monitor-v05-win-x64` ZIP（需要 .NET 10 Desktop Runtime）。详见 [示例 10 运行说明](10-operations-monitor/README.md)。
+
 所有实验代码仅用于模拟学习，不可直接用于真实工业控制系统。
 
 > 本仓库的 Linux 构建环境未安装 .NET SDK，因而 C# / WPF 运行需要在装有 .NET SDK 的 Windows 开发机完成；Python 模拟器可以独立测试。

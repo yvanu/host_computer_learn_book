@@ -37,9 +37,27 @@ jobs:
             "examples/04-wpf-monitor/WpfMonitor.csproj",
             "examples/06-modbus-tcp-client/ModbusClientDemo.csproj",
             "examples/08-wpf-modbus-monitor/IndustrialMonitor.csproj",
-            "examples/09-multi-device-monitor/MultiDeviceMonitor.csproj"
+            "examples/09-multi-device-monitor/MultiDeviceMonitor.csproj",
+            "examples/10-operations-monitor/OperationsMonitor.csproj",
+            "examples/10-operations-monitor/Smoke/SqliteSmoke.csproj"
           )
           foreach ($project in $projects) {
             dotnet build $project --configuration Release --nologo -p:UseSharedCompilation=false -maxcpucount:2
             if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           }
+      - name: Exercise SQLite persistence and audit (headless)
+        shell: pwsh
+        run: dotnet run --project examples/10-operations-monitor/Smoke/SqliteSmoke.csproj -c Release --no-build
+      - name: Publish portable Windows x64 monitor
+        shell: pwsh
+        run: |
+          dotnet publish examples/10-operations-monitor/OperationsMonitor.csproj -c Release -r win-x64 --self-contained false -o "$env:RUNNER_TEMP/monitor-v05" --nologo -p:UseSharedCompilation=false -maxcpucount:2
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Compress-Archive -Path "$env:RUNNER_TEMP/monitor-v05/*" -DestinationPath "$env:RUNNER_TEMP/operations-monitor-v05-win-x64.zip" -Force
+      - name: Upload portable Windows package
+        uses: actions/upload-artifact@v4
+        with:
+          name: operations-monitor-v05-win-x64
+          path: ${{ runner.temp }}/operations-monitor-v05-win-x64.zip
+          if-no-files-found: error
+          retention-days: 14

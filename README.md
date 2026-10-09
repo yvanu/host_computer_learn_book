@@ -10,6 +10,7 @@
 - [🧪 Modbus TCP 实操与 12 道自测题](docs/04-modbus/tcp-lab.md)
 - [🖥️ WPF 工业监控实战](docs/05-project/wpf-lab.md)
 - [🔌 多设备连接、重连与 SQLite 分页实战](docs/05-project/multi-device-lab.md)
+- [📦 v0.5 配置、审计与 Windows 交付](docs/05-project/settings-audit.md)
 
 ## 教材目标
 
@@ -30,6 +31,7 @@
 | [07 RTU CRC16 校验](examples/07-modbus-rtu-crc/) | 反射多项式、低字节先发 | Python 3.10+，跨平台 |
 | [08 WPF 工业监控台](examples/08-wpf-modbus-monitor/) | Modbus 采集、实时温度曲线、高温报警、SQLite、CSV | Windows / .NET 10 + SQLite 驱动 |
 | [09 多设备监控台](examples/09-multi-device-monitor/) | 2 路会话、有限重连、历史分页、独立报警阈值 | Windows / .NET 10 + SQLite 驱动 |
+| [10 可交付监控台](examples/10-operations-monitor/) | 配置持久化、报警确认审计、游标分页、旧采样清理、ZIP 发布 | Windows / .NET 10 + SQLite 驱动 |
 
 > 即使没有 PLC、串口转换器或实际传感器，也能先用模拟设备练习。上位机控制真实工业设备时，必须遵守设备厂商说明和现场安全规程。
 

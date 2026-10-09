@@ -19,7 +19,7 @@
 | 第 11 周 | 工业监控系统完整串联 | 可演示的 WPF 工控小项目 |
 | 第 12 周 | 测试、异常场景、复盘、面试 | README、架构图、验收记录、简历描述 |
 
-以上是学习时间预估，不代表已经完成全部章节。现在你可以直接完成 [Modbus TCP 本地实验](/04-modbus/tcp-lab)、[CRC16 实验](/04-modbus/crc-lab)，并对照 [联调排障清单](/04-modbus/debugging) 练习异常情况。之后可进入 [WPF 工业监控台](/05-project/wpf-lab) 将采集、报警与 SQLite 组合在一起，再做 [双设备独立采集与重连](/05-project/multi-device-lab)、[分页查询和独立报警](/05-project/history-alerts)。实际编写/测试状态以 [内容进度](/PROGRESS) 为准。
+以上是学习时间预估，不代表已经完成全部章节。现在你可以直接完成 [Modbus TCP 本地实验](/04-modbus/tcp-lab)、[CRC16 实验](/04-modbus/crc-lab)，并对照 [联调排障清单](/04-modbus/debugging) 练习异常情况。之后可进入 [WPF 工业监控台](/05-project/wpf-lab) 将采集、报警与 SQLite 组合在一起，再做 [双设备独立采集与重连](/05-project/multi-device-lab)、[分页查询和独立报警](/05-project/history-alerts)。v0.5 继续训练 [持久化设置与报警审计](/05-project/settings-audit)、[手动数据保留与 Windows 打包](/05-project/retention-release)。实际编写/测试状态以 [内容进度](/PROGRESS) 为准。
 
 ## 不需要从零学的东西
 

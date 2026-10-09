@@ -29,6 +29,8 @@
 | 6 个 C# 项目 Windows 编译 | 已通过 | GitHub Windows .NET 10 构建完成，v0.4 提交 be5a71c：[CI 记录](https://github.com/yvanu/host_computer_learn_book/actions/runs/37869098891) |
 | WPF GUI 桌面操作与 SQLite 实际落盘 | 未验证 | Windows 云端已编译通过，但自动化构建不会打开 GUI 或测试实际交互，需要 Windows 图形机器验收 |
 | 真实 PLC/Modbus RTU 联调 | 未开始 | 后续章节与设备条件就绪时再做 |
+| v0.5 SQLite 端到端验证 | 待 Windows CI | 在真实 .NET/SQLite 引擎上测试配置、报警、审计、分页和删除，而不是只检查 SQL 文本 |
+| v0.5 便携式 ZIP Artifact | 待 Windows CI | 非 MSI，不签名，电脑需要 .NET 10 Desktop Runtime |
 
 ## v0.2 · 工业通信实战（本轮新增）
 
@@ -72,12 +74,26 @@
 - [x] Windows .NET 10 CI **6 个 C# 工程编译通过**：[be5a71c 的运行记录](https://github.com/yvanu/host_computer_learn_book/actions/runs/37869098891)
 - [ ] Windows WPF 实际 GUI、重连与 SQLite 分页交互验收
 
-## 后续 · v0.5+
+## v0.5 · 配置持久化、报警审计与 Windows 交付（2026-10-09）
 
-- [ ] 设备配置持久化、断线后的事件审计、报警确认/恢复表
+- [x] 独立新增 `examples/10-operations-monitor/`，保留前面 v0.1～v0.4 的项目与数据库
+- [x] 新 SQLite `monitor_v05.sqlite`：设备阈值独立持久化，程序重开自动恢复
+- [x] 报警事件：触发、人工确认、恢复/离线；确认**不等于**恢复
+- [x] 持久审计：连接断开、阈值修改、报警、操作员确认、手动清理
+- [x] 历史列表升级为按 ID 的 keyset 游标分页，避免采集时 OFFSET 翻页漂移
+- [x] 旧采样清理手动确认：30 天前，一次最多 10000 行；不删除报警和审计
+- [x] 独立 SQLite 无 GUI 集成测试项目，包含重启持久化、双设备隔离、报警确认、游标分页、清理和 CSV
+- [x] 配置 GitHub Windows CI 编译 + SQLite 集成验证 + `win-x64` 框架依赖的 ZIP Artifacts 打包
+- [x] 新增 [05-7 配置与报警审计](/05-project/settings-audit)、[05-8 数据保留与打包](/05-project/retention-release) 两篇教学课程
+- [ ] Windows CI 编译、SQLite 集成测试及 ZIP Artifact 实际成功验收（待推送后检查）
+- [ ] Windows 图形界面手动实测与长时间运行测试
+
+## 后续 · v0.6+
+
 - [ ] 长期稳定性与内存曲线、多设备采集压力测试
-- [ ] SQLite 游标分页与数据保留策略
-- [ ] 工程化测试、发布安装包和签名
+- [ ] 真实用户权限、账号审计、数据备份与完整性防篡改
+- [ ] 基于设备配置表的动态设备增删、采集周期配置
+- [ ] 安装包和数字签名（当前先交付 Windows ZIP）
 - [ ] 进阶工业协议：OPC UA、CAN、PLC 厂商差异
 - [ ] 求职面试题与项目复盘
 
